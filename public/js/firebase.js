@@ -20,17 +20,22 @@ async function tokenValid(token, expiration) {
     return false;
   }
 
-  ref = database.ref(parent + token);
   var valid = false;
-  await ref.once("value", snapshot => {
+  console.log(parent+token);
+  
+  ref = database.ref(parent + token);
+  await ref.once("value", function(snapshot) {
     const date = new Date(snapshot.val().date);
     const today = new Date();
     if (today - date > expiration) {
       ref.remove();
     }
   });
+  console.log("End");
   return valid;
 }
+
+console.log(tokenValid("rememberMe", 5*24*60*60*1000));
 
 // function tokenUser(token, expiration, onSuccess, onFailure=()=>{return false;}) {
 //   const parent = token + "/";
