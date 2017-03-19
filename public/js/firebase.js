@@ -13,59 +13,57 @@ const auth = firebase.auth();
 
 var database = firebase.database();
 
-function tokenValid(token, expiration, onSuccess, onFailure=()=>{return false;}) {
+async function tokenValid(token, expiration) {
   const parent = token + "/";
   token = getCookie(token);
-  alert(token);
   if (token == null) {
-    return onFailure();
+    return false;
   }
 
   ref = database.ref(parent + token);
-  ref.once("value", function(snapshot) {
+  var valid = false;
+  await ref.once("value", snapshot => {
     const date = new Date(snapshot.val().date);
     const today = new Date();
     if (today - date > expiration) {
       ref.remove();
-      return onFailure();
     }
-    return onSuccess(token, expiration);
   });
+  return valid;
 }
 
-function tokenUser(token, expiration, onSuccess, onFailure=()=>{return false;}) {
-  const parent = token + "/";
-  return tokenValid(token, expiration,
-  function() {
-    token = getCookie(token);
-    ref = database.ref(parent + token);
-    ref.once("value", function(snapshot) {
-      const uid = snapshot.val().uid;
-      onSuccess(uid, token, expiration);
-    });
-  },
-  onFailure());
-}
+// function tokenUser(token, expiration, onSuccess, onFailure=()=>{return false;}) {
+//   const parent = token + "/";
+//   return tokenValid(token, expiration,
+//   function() {
+//     token = getCookie(token);
+//     ref = database.ref(parent + token);
+//     ref.once("value", function(snapshot) {
+//       const uid = snapshot.val().uid;
+//       onSuccess(uid, token, expiration);
+//     });
+//   },
+//   onFailure());
+// }
 
 function generateToken(tokenType, parent, expiration, firebaseUser) {
   var token = getCookie(tokenType);
   parent = tokenType + "/";
   tokenValid(token, expiration,
   function () {
-    alert("valid");
+    console.log("valid");
   },
   function () {
-    alert("new");
     token = generateRandomString50();
     var ref = database.ref(parent + token);
     ref.once("value", function(snapshot) {
       if (!snapshot.exists()) {
-        alert(token);
+        console.log(token);
         setCookieDate(tokenType, token, expiration);
         database.ref(parent + token).set({
           uid: firebaseUser.uid,
           date: new Date().toUTCString()
-        }).then(()=>alert("success!"),()=>alert("failure"));
+        }).then(()=>console.log("success!"),()=>console.log("failure"));
       }
       else {
         generateToken(tokenType, parent, expiration, firebaseUser);
@@ -95,7 +93,7 @@ function registerForm(form) {
     register(email, password).then(() => {console.log("Success!")}).catch(e => console.log(e.message));
   }
   else {
-    alert("Passwords do not match!");
+    console.log("Passwords do not match!");
   }
 }
 
