@@ -47,14 +47,6 @@ function tokenUser(token, expiration, onSuccess, onFailure=()=>{return false;}) 
   onFailure());
 }
 
-tokenValid("rememberMe", 14*24*60*60*1000,
-function (token) {
-  alert(token);
-},
-function () {
-  alert("");
-});
-
 function generateToken(tokenType, parent, expiration, firebaseUser) {
   var token = getCookie(tokenType);
   parent = tokenType + "/";
@@ -85,15 +77,26 @@ function generateToken(tokenType, parent, expiration, firebaseUser) {
 function signIn(email, password) {
   auth.signInWithEmailAndPassword(email, password).then(() => {
     const firebaseUser = auth.currentUser;
-
-    generateToken("rememberMe", 14*24*60*60*1000, firebaseUser);  
   }, e => {
-    alert("no");
+    console.log(e.message)
   });
 }
 
 function register(email, password) {
   return auth.createUserWithEmailAndPassword(email, password);
+}
+
+function registerForm(form) {
+  const email = form.email.value;
+  const password = form.password.value;
+  const confirm_password = form.confirm_password.value;
+
+  if (password == confirm_password) {
+    register(email, password).then(() => {console.log("Success!")}).catch(e => console.log(e.message));
+  }
+  else {
+    alert("Passwords do not match!");
+  }
 }
 
 function loginForm(form) {
