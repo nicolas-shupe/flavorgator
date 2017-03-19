@@ -13,27 +13,92 @@ const auth = firebase.auth();
 
 var database = firebase.database();
 
-function generateRandomString20() {
-  const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@!%^&*()?";
-  var output = "";
-  for (char = 0; char < 20; char++) {
-    output += charset[Math.floor(Math.random()*charset.length)];
+function tokenValid(token, expiration, onSuccess, onFailure=()=>{return false;}) {
+  const parent = token + "/";
+  token = getCookie(token);
+  alert(token);
+  if (token == null) {
+    return onFailure();
   }
 
-  return output;
+  ref = database.ref(parent + token);
+  ref.once("value", function(snapshot) {
+    const date = new Date(snapshot.val().date);
+    const today = new Date();
+    if (today - date > expiration) {
+      ref.remove();
+      return onFailure();
+    }
+    return onSuccess(token, expiration);
+  });
 }
 
-function register(email, password) {
-  return auth.createUserWithEmailAndPassword(email, password);
+function tokenUser(token, expiration, onSuccess, onFailure=()=>{return false;}) {
+  const parent = token + "/";
+  return tokenValid(token, expiration,
+  function() {
+    token = getCookie(token);
+    ref = database.ref(parent + token);
+    ref.once("value", function(snapshot) {
+      const uid = snapshot.val().uid;
+      onSuccess(uid, token, expiration);
+    });
+  },
+  onFailure());
+}
+
+tokenValid("rememberMe", 14*24*60*60*1000,
+function (token) {
+  alert(token);
+},
+function () {
+  alert("");
+});
+
+function generateToken(tokenType, parent, expiration, firebaseUser) {
+  var token = getCookie(tokenType);
+  parent = tokenType + "/";
+  tokenValid(token, expiration,
+  function () {
+    alert("valid");
+  },
+  function () {
+    alert("new");
+    token = generateRandomString50();
+    var ref = database.ref(parent + token);
+    ref.once("value", function(snapshot) {
+      if (!snapshot.exists()) {
+        alert(token);
+        setCookieDate(tokenType, token, expiration);
+        database.ref(parent + token).set({
+          uid: firebaseUser.uid,
+          date: new Date().toUTCString()
+        }).then(()=>alert("success!"),()=>alert("failure"));
+      }
+      else {
+        generateToken(tokenType, parent, expiration, firebaseUser);
+      }
+    });
+  });
 }
 
 function signIn(email, password) {
   auth.signInWithEmailAndPassword(email, password).then(() => {
     const firebaseUser = auth.currentUser;
 
-    database.ref('keys/' + generateRandomString20()).set({
-      uid: firebaseUser.uid,
-      date: new Date().toJSON()
-    });
-  }, e => {});
+    generateToken("rememberMe", 14*24*60*60*1000, firebaseUser);  
+  }, e => {
+    alert("no");
+  });
+}
+
+function register(email, password) {
+  return auth.createUserWithEmailAndPassword(email, password);
+}
+
+function loginForm(form) {
+  const email = form.email.value;
+  const password = form.password.value;
+
+  signIn(email, password);
 }
