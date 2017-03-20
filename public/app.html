@@ -83,11 +83,74 @@
 
 
 
+<!-- the css -->
+<head>
+<style>
+/* Popup container - can be anything you want */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 240px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: -50px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+</style>
+
+</head>
 
 
 
 
 
+<!-- the app itself-->
 
 <img src="map_app/map35.png" alt="ay" usemap="#Map" 
     
@@ -97,7 +160,7 @@
 
 
 <map name="Map" id="Map">
-    <area alt="" title="Main Menu " href="1.html" shape="poly" coords="1373.3999999999999,
+    <area alt="" title="Main Menu " showform()="" shape="poly" coords="1373.3999999999999,
   549.5,
   1370.9499999999998,
   602.3499999999999,
@@ -106,7 +169,7 @@
   889.0,
   564.1999999999999" />
 
-    <area alt="" title="Al's Patio" href="2.html" shape="poly" coords="1610.0, 3.5, 1720.9499999999998, 4.55, 1722.35, 170.45, 1626.1, 171.85" />
+    <area alt="" title="Al's Patio" href="map_app/2.html" shape="poly" coords="1610.0, 3.5, 1720.9499999999998, 4.55, 1722.35, 170.45, 1626.1, 171.85" />
 
     <area alt="" title="Salad Bar" href="3.html" shape="poly" coords="1381.8,
   795.55,
@@ -117,7 +180,7 @@
   1383.1999999999998,
   854.3499999999999" />
 
-    <area alt="" title="Soup Bar" href="4.html" shape="poly" coords="1624.35,
+    <area alt="" title="Soup Bar" href="map_app/4.html" shape="poly" coords="1624.35,
   784.6999999999999,
   1741.6,
   783.3,
@@ -126,7 +189,7 @@
   1628.55,
   838.25" />
 
-    <area alt="" title="Panini Bar" href="5.html" shape="poly" coords="1747.8999999999999,
+    <area alt="" title="Panini Bar" href="map_app/5.html" shape="poly" coords="1747.8999999999999,
   781.55,
   1941.8,
   778.75,
@@ -135,7 +198,7 @@
   1752.4499999999998,
   841.4" />
 
-    <area alt="" title="Bagel Bar" href="6.html" shape="poly" coords="2277.7999999999997,
+    <area alt="" title="Bagel Bar" href="map_app/6.html" shape="poly" coords="2277.7999999999997,
   1165.5,
   2368.45,
   1160.25,
@@ -144,7 +207,7 @@
   2273.25,
   1584.4499999999998" />
 
-    <area alt="" title="Icecream Bar" href="7.html" shape="poly" coords="2275.35,
+    <area alt="" title="Icecream Bar" href="map_app/7.html" shape="poly" coords="2275.35,
   1589.35,
   2363.8999999999996,
   1591.8,
@@ -153,10 +216,10 @@
   2273.25,
   1696.4499999999998" />
 
-    <area alt="" title="Coffe and Tea" href="8.html" shape="poly" coords="
+    <area alt="" title="Coffe and Tea" href="map_app/8.html" shape="poly" coords="
   554.75, 1420.3, 599.55, 1422.3999999999999, 599.55, 1728.3, 554.75, 1736.0" />
 
-    <area alt="" title="Dessert Bar" href="9.html" shape="poly" coords="
+    <area alt="" title="Dessert Bar" href="map_app/9.html" shape="poly" coords="
   615.3,
   1423.4499999999998,
   656.25,
@@ -166,7 +229,7 @@
   616.6999999999999,
   1508.1499999999999" />
 
-    <area alt="" title="Fruit Stand" href="10.html" shape="poly" coords="613.55,
+    <area alt="" title="Fruit Stand" href="map_app/10.html" shape="poly" coords="613.55,
   1515.85,
   658.6999999999999,
   1517.9499999999998,
@@ -175,7 +238,7 @@
   615.3,
   1615.9499999999998" />
 
-    <area alt="" title="Drink Machine" href="11.html" shape="poly" coords="610.75,
+    <area alt="" title="Drink Machine" href="map_app/11.html" shape="poly" coords="610.75,
   1624.35,
   657.3,
   1621.8999999999999,
@@ -184,7 +247,7 @@
   616.6999999999999,
   1719.1999999999998" />
 
-    <area alt="" title="Drink Counter" href="12.html" shape="poly" coords="564.1999999999999,
+    <area alt="" title="Drink Counter" href="map_app/12.html" shape="poly" coords="564.1999999999999,
   1021.9999999999999,
   561.05,
   789.25,
@@ -197,7 +260,7 @@
   627.55,
   1021.3" />
 
-    <area alt="" title="Utensils and Sauce" href="13.html" shape="poly" coords="1015.6999999999999,
+    <area alt="" title="Utensils and Sauce" href="map_app/13.html" shape="poly" coords="1015.6999999999999,
   747.5999999999999,
   1175.3,
   746.9,
@@ -238,3 +301,60 @@
 
 <script src="imageMapResizer.min.js" >
 imagemapresize(Map);
+
+
+
+// When the user clicks on div, open the popup
+function F1() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}c
+function F2() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+function F3() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+function F4() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+function F5() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+function F6() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+function F7() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+function F8() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+function F9() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+function F10() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+function F11() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+function F12() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+function F13() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+</script>

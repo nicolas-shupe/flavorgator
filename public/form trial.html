@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head >
+
+<link href="forms.css" rel="stylesheet">
+
+</head>
+<body style="text-align:center; padding-top: 500px;" >
+
+<h2>Popup</h2>
+
+
+
+<div class="popup"><p  onclick="myFunction()">Click me to toggle the popup!</p>
+ 
+  
+<form action="/action_page.php" class="popuptext" id="myPopup">
+  
+<form class="form" style="column-width: 200px; border-width: 200px; width: 240px;">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Form Name</legend>
+
+<!-- Multiple Radios (inline) -->
+<div class="form-group">
+  <label class="col-md-5 control-label" for="radios">Your Rating</label>
+  <div class="col-md-5"> 
+    <label class="radio-inline" for="radios-0">
+      <input name="radios" id="radios-0" value="1" checked="checked" type="radio">
+      1
+    </label> 
+    <label class="radio-inline" for="radios-1">
+      <input name="radios" id="radios-1" value="2" type="radio">
+      2
+    </label> 
+    <label class="radio-inline" for="radios-2">
+      <input name="radios" id="radios-2" value="3" type="radio">
+      3
+    </label> 
+    <label class="radio-inline" for="radios-3">
+      <input name="radios" id="radios-3" value="4" type="radio">
+      4
+    </label> 
+    <label class="radio-inline" for="radios-4">
+      <input name="radios" id="radios-4" value="5" type="radio">
+      5
+    </label>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Comments">Comments, Questions, Concerns?</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="Comments" name="Comments">Type Here (Be considerate and leave actionable feedback.)</textarea>
+  </div>
+</div>
+
+
+  <input type="submit" value="Submit">
+</fieldset>
+</form> 
+
+
+</div>
+
+<script>
+// When the user clicks on div, open the popup
+function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+</script>
+
+</body>
+</html>
