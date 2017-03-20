@@ -1,4 +1,11 @@
-// <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
+const DEBUG = true;
+
+function debug(message) {
+  if (DEBUG) {
+    console.log(message);
+  }
+}
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyAasOds-5xi2RPUiy4tbB5hiLfdjlAdIqw",
@@ -17,71 +24,88 @@ async function tokenValid(token, expiration) {
   const parent = token + "/";
   token = getCookie(token);
   if (token == null) {
+    debug("Token DNE");
     return false;
   }
 
+  token = forge.md.sha256.create().update(token).digest().toHex();
+
   var valid = false;
-  console.log(parent+token);
   
   ref = database.ref(parent + token);
   await ref.once("value", function(snapshot) {
+    if (!snapshot.exists()) {
+      debug("Token already exists!");
+      return;
+    }
+
     const date = new Date(snapshot.val().date);
     const today = new Date();
     if (today - date > expiration) {
+      debug("Token expired");
       ref.remove();
     }
+    else {
+      debug("Token valid")
+      valid = true;
+    }
   });
-  console.log("End");
   return valid;
 }
 
-console.log(tokenValid("rememberMe", 5*24*60*60*1000));
+async function tokenUser(token, expiration) {
+  const parent = token + "/";
+  if (!(await tokenValid(token, expiration))) {
+    debug("Invalid token!");
+    return null;
+  }
+  token = getCookie(token);
+  token = forge.md.sha256.create().update(token).digest().toHex();
+  ref = database.ref(parent + token);
 
-// function tokenUser(token, expiration, onSuccess, onFailure=()=>{return false;}) {
-//   const parent = token + "/";
-//   return tokenValid(token, expiration,
-//   function() {
-//     token = getCookie(token);
-//     ref = database.ref(parent + token);
-//     ref.once("value", function(snapshot) {
-//       const uid = snapshot.val().uid;
-//       onSuccess(uid, token, expiration);
-//     });
-//   },
-//   onFailure());
-// }
-
-function generateToken(tokenType, parent, expiration, firebaseUser) {
-  var token = getCookie(tokenType);
-  parent = tokenType + "/";
-  tokenValid(token, expiration,
-  function () {
-    console.log("valid");
-  },
-  function () {
-    token = generateRandomString50();
-    var ref = database.ref(parent + token);
-    ref.once("value", function(snapshot) {
-      if (!snapshot.exists()) {
-        console.log(token);
-        setCookieDate(tokenType, token, expiration);
-        database.ref(parent + token).set({
-          uid: firebaseUser.uid,
-          date: new Date().toUTCString()
-        }).then(()=>console.log("success!"),()=>console.log("failure"));
-      }
-      else {
-        generateToken(tokenType, parent, expiration, firebaseUser);
-      }
-    });
+  var uid = null;
+  await ref.once("value", function(snapshot) {
+    uid = snapshot.val().uid;
+    debug("UID: " + uid);
   });
+  return uid;
+}
+
+async function generateToken(tokenType, expiration, firebaseUser) {
+  const parent = tokenType + "/";
+  var token = generateRandomString50();
+  const hash = forge.md.sha256.create().update(token).digest().toHex();
+  var ref = database.ref(parent + hash);
+  ref.once("value", function(snapshot) {
+    if (!snapshot.exists()) {
+      debug("Token: " + token);
+      debug("Hash: " + hash);
+      setCookieDate(tokenType, token, expiration);
+      database.ref(parent + hash).set({
+        uid: firebaseUser.uid,
+        date: new Date().toUTCString()
+      });
+    }
+    else {
+      generateToken(tokenType, expiration, firebaseUser);
+    }
+  });
+}
+
+async function deleteToken(tokenType) {
+  const parent = tokenType + "/";
+  const hash = forge.md.sha256.create().update(token).digest().toHex();
+
+  deleteCookie(tokenType);
+
 }
 
 function signIn(email, password) {
   auth.signInWithEmailAndPassword(email, password).then(() => {
     const firebaseUser = auth.currentUser;
+    generateToken("rememberMe", 5*24*1000*1000, firebaseUser);
   }, e => {
-    console.log(e.message)
+    debug(e.message)
   });
 }
 
@@ -108,3 +132,13 @@ function loginForm(form) {
 
   signIn(email, password);
 }
+
+async function rememberMe(onSuccess, onFailure) {
+  const uid = await tokenUser("rememberMe", 5*24*60*60*1000);
+  if (uid != null) {
+    onSuccess();
+  }
+  else {
+    onFailure();
+  }
+};

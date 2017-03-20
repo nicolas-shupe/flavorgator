@@ -9,6 +9,10 @@ function setCookie(cname,cvalue) {
     document.cookie = cname + "=" + cvalue + ";" + "path=/";
 }
 
+function deleteCookie(cname) {
+    setCookieDate(cname, ";", "expires=Mon, 07 Sep 1998 00:00:01 GMT;")
+}
+
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');

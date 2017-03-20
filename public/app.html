@@ -207,9 +207,33 @@
   833.0" />
 </map>
 
+    <script src="imageMapResizer.min.js"> </script>
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 
+    <!-- Encryption JavaScript -->
+    <script src="js/forge.all.min.js"></script>
 
+    <!-- Core JavaScript -->
+    <script src="js/app.js?v=15"></script>
+
+    <!-- Firebase Core JavaScript -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
+
+    <!-- Firebase JavaScript -->
+    <script src="js/firebase.js?v=15"></script>
+
+    <script>
+      rememberMe(() => {}, function() {
+        window.location.href = "index.html";
+      });
+      imagemapresize(Map);
+    </script>
+
+</body>
 
 
 
@@ -234,7 +258,3 @@
     </div>
 </div>
 </footer>
-
-
-<script src="imageMapResizer.min.js" >
-imagemapresize(Map);
