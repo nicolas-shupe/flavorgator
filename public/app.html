@@ -17,7 +17,7 @@
 
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css\bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <style>
@@ -33,6 +33,27 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script src="imageMapResizer.min.js"> </script>
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Encryption JavaScript -->
+    <script src="js/forge.all.min.js"></script>
+
+    <!-- Core JavaScript -->
+    <script src="js/app.js?v=15"></script>
+
+    <!-- Firebase Core JavaScript -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
+
+    <!-- Firebase JavaScript -->
+    <script src="js/firebase.js?v=15"></script>
+
+
 
 </head>
 
@@ -87,28 +108,16 @@
   <style>
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    -webkit-animation-name: fadeIn; /* Fade in the background */
-    -webkit-animation-duration: 0.4s;
-    animation-name: fadeIn;
-    animation-duration: 0.4s
+
 }
 
 /* Modal Content */
 .modal-content {
-    position: fixed;
+    position: auto;
     bottom: 0;
-    background-color: #fefefe;
+    
     width: 100%;
+    
     -webkit-animation-name: slideIn;
     -webkit-animation-duration: 0.4s;
     animation-name: slideIn;
@@ -118,7 +127,7 @@
 /* The Close Button */
 .close {
     color: white;
-    float: right;
+    float: left;
     font-size: 28px;
     font-weight: bold;
 }
@@ -182,27 +191,174 @@
   <map name="Map" id="Map">
 
 
-      <area alt="" title="Main Menu " href="#" data-toggle="modal" data-target="#myModal" shape="poly" coords="343.35, 137.38, 342.74, 150.59, 222.25, 153.91, 222.25, 141.05"/>
+      <area alt="" title="Main Menu "  data-toggle="modal" data-target="#myModal" shape="poly" coords="343.35, 137.38, 342.74, 150.59, 222.25, 153.91, 222.25, 141.05"/>
 
         <!-- The Modal -->
         <div id="myModal" class="modal">
 
         <!-- Modal content -->
         <div class="modal-content">
+
         <div class="modal-header">
           <span class="close">&times;</span>
-          <h2>Modal Header</h2>
+          <h2></h2>
         </div>
-        <div class="modal-body">
-          <p>Some text in the Modal Body</p>
-          <p>Some other text...</p>
-        </div>
+        <div class="modal-body"><!--formden.js communicates with FormDen server to validate fields and submit via AJAX -->
+          <script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
+
+          <!-- Special version of Bootstrap that is isolated to content wrapped in .bootstrap-iso -->
+          <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+          <!-- Inline CSS based on choices in "Settings" tab -->
+          <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+
+          <!-- HTML Form (wrapped in a .bootstrap-iso div) -->
+          <div class="bootstrap-iso">
+           <div class="container-fluid">
+            <div class="row">
+             <div class="col-md-6 col-sm-6 col-xs-12">
+              <form action="https://formden.com/post/HUEfv6UW/" method="post">
+               <div class="form-group ">
+                <label class="control-label requiredField">
+                 Required - General Rating
+                 <span class="asteriskField">
+                  *
+                 </span>
+                </label>
+                <div class="">
+                 <div class="radio">
+                  <label class="radio">
+                   <input name="Stars" type="radio" value="1 - Needs significant improvement"/>
+                   1 - Needs significant improvement
+                  </label>
+                 </div>
+                 <div class="radio">
+                  <label class="radio">
+                   <input name="Stars" type="radio" value="2 - Needs improvement"/>
+                   2 - Needs improvement
+                  </label>
+                 </div>
+                 <div class="radio">
+                  <label class="radio">
+                   <input name="Stars" type="radio" value="3 - Average"/>
+                   3 - Average
+                  </label>
+                 </div>
+                 <div class="radio">
+                  <label class="radio">
+                   <input name="Stars" type="radio" value="4 - Above average"/>
+                   4 - Above average
+                  </label>
+                 </div>
+                 <div class="radio">
+                  <label class="radio">
+                   <input name="Stars" type="radio" value="5 - Amazing !"/>
+                   5 - Amazing !
+                  </label>
+                 </div>
+                 <span class="help-block" id="hint_Stars">
+                  Please give a rating that reflects your general view of this station.
+                 </span>
+                </div>
+               </div>
+               <div class="form-group ">
+                <label class="control-label ">
+                 Optional - purpose rating
+                </label>
+                <div class="">
+                 <div class="radio">
+                  <label class="radio">
+                   <input name="optional" type="radio" value="1 - Very poorly"/>
+                   1 - Very poorly
+                  </label>
+                 </div>
+                 <div class="radio">
+                  <label class="radio">
+                   <input name="optional" type="radio" value="2 - Poorly"/>
+                   2 - Poorly
+                  </label>
+                 </div>
+                 <div class="radio">
+                  <label class="radio">
+                   <input name="optional" type="radio" value="3 - Well enough"/>
+                   3 - Well enough
+                  </label>
+                 </div>
+                 <div class="radio">
+                  <label class="radio">
+                   <input name="optional" type="radio" value="4 - Well"/>
+                   4 - Well
+                  </label>
+                 </div>
+                 <div class="radio">
+                  <label class="radio">
+                   <input name="optional" type="radio" value="5 - Extremely well "/>
+                   5 - Extremely well
+                  </label>
+                 </div>
+                 <span class="help-block" id="hint_optional">
+                  If you would like to rate how well the station fulfills its intended purpose based on the description below please do so here.
+                 </span>
+                </div>
+               </div>
+               <div class="form-group ">
+                <label class="control-label requiredField" for="message">
+                 Required - Comments, Questions, Concerns.
+                 <span class="asteriskField">
+                  *
+                 </span>
+                </label>
+                <textarea class="form-control" cols="40" id="message" name="message" placeholder="Please fill out this section so that the dining hall staff can take action of the feedback you have given." rows="10"></textarea>
+                <span class="help-block" id="hint_message">
+                 If you have any constructive feedback you would like to share with the dining hall staff post it here. Keep in mind that your comments will be read by our staff and that your email is associated with the comment (Identifying information will NOT be shared with the dining hall staff specifically your name ,grade, and email address).
+                </span>
+               </div>
+               <div class="form-group">
+                <div>
+                 <input name="_honey" style="display:none" type="text"/>
+                 <button class="btn btn-primary btn-lg btn-block" name="submit" type="submit">
+                  Submit
+                 </button>
+                </div>
+               </div>
+              </form>
+             </div>
+            </div>
+           </div>
+          </div>
+
         <div class="modal-footer">
-          <h3>Modal Footer</h3>
+          <button class="btn btn-primary pull-left" type="button" data-dismiss="modal">Close</button>       
+           <h3 style = "text-align :center"; >Thanks for rating!</h3>
+
         </div>
         </div>
 
         </div>
+
+          <script>
+          // Get the modal
+          var modal = document.getElementById('myModal');
+
+
+          // Get the <span> element that closes the modal
+          var span = document.getElementsByClassName("close")[0];
+
+          
+
+          // When the user clicks on <span> (x), close the modal
+          span.onclick = function() {
+              modal.style.display = "none";
+              
+          }
+
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function(event) {
+              if (event.target == modal) {
+                  modal.style.display = "none";
+              }
+          }
+          </script>
 
 
       <area alt="" title="Al's Patio" href="map_app/2.html" shape="poly" coords="402.5, 0.88, 430.24, 1.14, 430.59, 42.61, 406.52, 42.96"/>
@@ -275,6 +431,9 @@
     <!-- Firebase JavaScript -->
     <script src="js/firebase.js?v=15"></script>
 
+
+
+<!-- UN UN-COMMENT AFTER TESTING 
     <script>
       rememberMe(() => {}, function() {
         window.location.href = "index.html";
@@ -283,37 +442,8 @@
     </script>
 
 </body>
+-->
 
-
-
-<!--modal script dont remove-->
-<script>
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
 
 
 <!--social media buttons-->
@@ -338,5 +468,5 @@ window.onclick = function(event) {
 
 
 <script src="imageMapResizer.min.js" >
-imagemapresize(Map);
+  imagemapresize(Map);
 </script>
