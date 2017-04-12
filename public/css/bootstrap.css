@@ -174,7 +174,7 @@ legend {
   border: 0;
 }
 textarea {
-  overflow: auto;
+  overflow: scroll;
 }
 optgroup {
   font-weight: bold;
@@ -5864,7 +5864,7 @@ button.close {
   border: 0;
 }
 .modal-open {
-  overflow: hidden;
+  overflow: scroll;
 }
 .modal {
   position: fixed;
@@ -5874,7 +5874,7 @@ button.close {
   left: 0;
   z-index: 1050;
   display: none;
-  overflow: hidden;
+  overflow: scroll;
   -webkit-overflow-scrolling: touch;
   outline: 0;
 }
@@ -5895,7 +5895,7 @@ button.close {
 }
 .modal-open .modal {
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 .modal-dialog {
   position: relative;
@@ -5914,22 +5914,8 @@ button.close {
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
           box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
 }
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1040;
-  background-color: #000;
-}
-.modal-backdrop.fade {
-  filter: alpha(opacity=0);
-  opacity: 0;
-}
-.modal-backdrop.in {
-  filter: alpha(opacity=50);
-  opacity: .5;
+
+
 }
 .modal-header {
   padding: 15px;
