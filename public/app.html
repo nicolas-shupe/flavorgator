@@ -23,6 +23,7 @@
     <style>
     body {
         padding-top: 70px;
+
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
     </style>
@@ -102,7 +103,7 @@
 
 
 
-
+<!-- modal css do not mess with it -->
 
 <head>
   <style>
@@ -177,11 +178,15 @@
 
 </head>
 
+
+
+
+
 <!-- the app itself-->
 
-<img src="map_app/mapfinal.png" alt="ay" usemap="#Map" 
+<img src="map_app/mapfinal.png" alt="ay" usemap="#Map" class =" center-Image" 
     
-    style= " width: 601.75px; height: 465px;"
+    style= " width: 601.75px; height: 465px; margin: 0px auto;display:block;
      >
 
 
@@ -191,221 +196,395 @@
   <map name="Map" id="Map">
 
 
-      <area alt="" title="Main Menu "  data-toggle="modal" data-target="#myModal" shape="poly" coords="343.35, 137.38, 342.74, 150.59, 222.25, 153.91, 222.25, 141.05"/>
+      <area alt="" title="Main Menu "  data-toggle="modal" data-target="#myModal1" shape="poly" coords="343.35, 137.38, 342.74, 150.59, 222.25, 153.91, 222.25, 141.05"/>
 
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
+        <!-- This closes the huge model below (click left)-->
+        <div>
 
-        <!-- Modal content -->
-        <div class="modal-content">
+          <!-- The Modal -->
+          <div id="myModal1" class="modal">
 
-        <div class="modal-header">
-          <span class="close">&times;</span>
-          <h2></h2>
-        </div>
-        <div class="modal-body"><!--formden.js communicates with FormDen server to validate fields and submit via AJAX -->
-          <script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
+          <!-- Modal content -->
+          <div class="modal-content">
 
-          <!-- Special version of Bootstrap that is isolated to content wrapped in .bootstrap-iso -->
-          <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+          <div class="modal-header">
+            <button class="btn btn-primary pull-left" type="button" data-dismiss="modal">Close</button>
+            <h2></h2>
+          </div>
+          <div class="modal-body"><!--formden.js communicates with FormDen server to validate fields and submit via AJAX -->
+            <script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
 
-          <!-- Inline CSS based on choices in "Settings" tab -->
-          <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+            <!-- Special version of Bootstrap that is isolated to content wrapped in .bootstrap-iso -->
+            <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
 
-          <!-- HTML Form (wrapped in a .bootstrap-iso div) -->
-          <div class="bootstrap-iso">
-           <div class="container-fluid">
-            <div class="row">
-             <div class="col-md-6 col-sm-6 col-xs-12">
-              <form action="https://formden.com/post/HUEfv6UW/" method="post">
-               <div class="form-group ">
-                <label class="control-label requiredField">
-                 Required - General Rating
-                 <span class="asteriskField">
-                  *
-                 </span>
-                </label>
-                <div class="">
-                 <div class="radio">
-                  <label class="radio">
-                   <input name="Stars" type="radio" value="1 - Needs significant improvement"/>
-                   1 - Needs significant improvement
+            <!-- Inline CSS based on choices in "Settings" tab -->
+            <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+
+            <!-- HTML Form (wrapped in a .bootstrap-iso div) -->
+            <div class="bootstrap-iso">
+             <div class="container-fluid">
+              <div class="row">
+               <div class="col-md-6 col-sm-6 col-xs-12">
+                <form action="https://formden.com/post/HUEfv6UW/" method="post">
+                 <div class="form-group ">
+                  <label class="control-label requiredField">
+                   Required - General Rating
+                   <span class="asteriskField">
+                    *
+                   </span>
                   </label>
+                  <div class="">
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="Stars" type="radio" value="1 - Needs significant improvement"/>
+                     1 - Needs significant improvement
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="Stars" type="radio" value="2 - Needs improvement"/>
+                     2 - Needs improvement
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="Stars" type="radio" value="3 - Average"/>
+                     3 - Average
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="Stars" type="radio" value="4 - Above average"/>
+                     4 - Above average
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="Stars" type="radio" value="5 - Amazing !"/>
+                     5 - Amazing !
+                    </label>
+                   </div>
+                   <span class="help-block" id="hint_Stars">
+                    Please give a rating that reflects your general view of this station.
+                   </span>
+                  </div>
                  </div>
-                 <div class="radio">
-                  <label class="radio">
-                   <input name="Stars" type="radio" value="2 - Needs improvement"/>
-                   2 - Needs improvement
+                 <div class="form-group ">
+                  <label class="control-label ">
+                   Optional - purpose rating
                   </label>
+                  <div class="">
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="optional" type="radio" value="1 - Very poorly"/>
+                     1 - Very poorly
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="optional" type="radio" value="2 - Poorly"/>
+                     2 - Poorly
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="optional" type="radio" value="3 - Well enough"/>
+                     3 - Well enough
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="optional" type="radio" value="4 - Well"/>
+                     4 - Well
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="optional" type="radio" value="5 - Extremely well "/>
+                     5 - Extremely well
+                    </label>
+                   </div>
+                   <span class="help-block" id="hint_optional">
+                    If you would like to rate how well the station fulfills its intended purpose based on the description below please do so here.
+                   </span>
+                  </div>
                  </div>
-                 <div class="radio">
-                  <label class="radio">
-                   <input name="Stars" type="radio" value="3 - Average"/>
-                   3 - Average
+                 <div class="form-group ">
+                  <label class="control-label requiredField" for="message">
+                   Required - Comments, Questions, Concerns.
+                   <span class="asteriskField">
+                    *
+                   </span>
                   </label>
+                  <textarea class="form-control" cols="40" id="message" name="message" placeholder="Please fill out this section so that the dining hall staff can take action of the feedback you have given." rows="10"></textarea>
+                  <span class="help-block" id="hint_message">
+                   If you have any constructive feedback you would like to share with the dining hall staff post it here. Keep in mind that your comments will be read by our staff and that your email is associated with the comment (Identifying information will NOT be shared with the dining hall staff specifically your name ,grade, and email address).
+                  </span>
                  </div>
-                 <div class="radio">
-                  <label class="radio">
-                   <input name="Stars" type="radio" value="4 - Above average"/>
-                   4 - Above average
-                  </label>
+                 <div class="form-group">
+                  <div>
+                   <input name="_honey" style="display:none" type="text"/>
+                   <button class="btn btn-primary btn-lg btn-block" name="submit" type="submit">
+                    Submit
+                   </button>
+                  </div>
                  </div>
-                 <div class="radio">
-                  <label class="radio">
-                   <input name="Stars" type="radio" value="5 - Amazing !"/>
-                   5 - Amazing !
-                  </label>
-                 </div>
-                 <span class="help-block" id="hint_Stars">
-                  Please give a rating that reflects your general view of this station.
-                 </span>
-                </div>
+                </form>
                </div>
-               <div class="form-group ">
-                <label class="control-label ">
-                 Optional - purpose rating
-                </label>
-                <div class="">
-                 <div class="radio">
-                  <label class="radio">
-                   <input name="optional" type="radio" value="1 - Very poorly"/>
-                   1 - Very poorly
-                  </label>
-                 </div>
-                 <div class="radio">
-                  <label class="radio">
-                   <input name="optional" type="radio" value="2 - Poorly"/>
-                   2 - Poorly
-                  </label>
-                 </div>
-                 <div class="radio">
-                  <label class="radio">
-                   <input name="optional" type="radio" value="3 - Well enough"/>
-                   3 - Well enough
-                  </label>
-                 </div>
-                 <div class="radio">
-                  <label class="radio">
-                   <input name="optional" type="radio" value="4 - Well"/>
-                   4 - Well
-                  </label>
-                 </div>
-                 <div class="radio">
-                  <label class="radio">
-                   <input name="optional" type="radio" value="5 - Extremely well "/>
-                   5 - Extremely well
-                  </label>
-                 </div>
-                 <span class="help-block" id="hint_optional">
-                  If you would like to rate how well the station fulfills its intended purpose based on the description below please do so here.
-                 </span>
-                </div>
-               </div>
-               <div class="form-group ">
-                <label class="control-label requiredField" for="message">
-                 Required - Comments, Questions, Concerns.
-                 <span class="asteriskField">
-                  *
-                 </span>
-                </label>
-                <textarea class="form-control" cols="40" id="message" name="message" placeholder="Please fill out this section so that the dining hall staff can take action of the feedback you have given." rows="10"></textarea>
-                <span class="help-block" id="hint_message">
-                 If you have any constructive feedback you would like to share with the dining hall staff post it here. Keep in mind that your comments will be read by our staff and that your email is associated with the comment (Identifying information will NOT be shared with the dining hall staff specifically your name ,grade, and email address).
-                </span>
-               </div>
-               <div class="form-group">
-                <div>
-                 <input name="_honey" style="display:none" type="text"/>
-                 <button class="btn btn-primary btn-lg btn-block" name="submit" type="submit">
-                  Submit
-                 </button>
-                </div>
-               </div>
-              </form>
+              </div>
              </div>
             </div>
-           </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-primary pull-left" type="button" data-dismiss="modal">Close</button>       
+             <h3 style = "text-align :center"; >Thanks for rating!</h3>
+
+          </div>
           </div>
 
-        <div class="modal-footer">
-          <button class="btn btn-primary pull-left" type="button" data-dismiss="modal">Close</button>       
-           <h3 style = "text-align :center"; >Thanks for rating!</h3>
+          </div>
 
-        </div>
-        </div>
-
-        </div>
-
-          <script>
-          // Get the modal
-          var modal = document.getElementById('myModal');
+            <script>
+            // Get the modal
+            var modal = document.getElementById('myModal1');
 
 
-          // Get the <span> element that closes the modal
-          var span = document.getElementsByClassName("close")[0];
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
 
-          
+            
 
-          // When the user clicks on <span> (x), close the modal
-          span.onclick = function() {
-              modal.style.display = "none";
-              
-          }
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+                
+            }
 
-          // When the user clicks anywhere outside of the modal, close it
-          window.onclick = function(event) {
-              if (event.target == modal) {
-                  modal.style.display = "none";
-              }
-          }
-          </script>
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            </script>
+
+          </div>
+
+      <area alt="" title="Al's Patio" data-toggle="modal" data-target="#myModal2" shape="poly" coords="402.5, 0.88, 430.24, 1.14, 430.59, 42.61, 406.52, 42.96"/>
+        <!-- This closes the huge model below (click left)-->
+        <div>
+
+          <!-- The Modal -->
+          <div id="myModal2" class="modal">
+
+          <!-- Modal content -->
+          <div class="modal-content">
+
+          <div class="modal-header">
+            <button class="btn btn-primary pull-left" type="button" data-dismiss="modal">Close</button>
+            <h2></h2>
+          </div>
+          <div class="modal-body"><!--formden.js communicates with FormDen server to validate fields and submit via AJAX -->
+            <script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script>
+
+            <!-- Special version of Bootstrap that is isolated to content wrapped in .bootstrap-iso -->
+            <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+            <!-- Inline CSS based on choices in "Settings" tab -->
+            <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+
+            <!-- HTML Form (wrapped in a .bootstrap-iso div) -->
+            <div class="bootstrap-iso">
+             <div class="container-fluid">
+              <div class="row">
+               <div class="col-md-6 col-sm-6 col-xs-12">
+                <form action="https://formden.com/post/wWlLvMJe/" method="post">
+                 <div class="form-group ">
+                  <label class="control-label requiredField">
+                   Required - General Rating
+                   <span class="asteriskField">
+                    *
+                   </span>
+                  </label>
+                  <div class="">
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="Stars" type="radio" value="1 - Needs significant improvement"/>
+                     1 - Needs significant improvement
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="Stars" type="radio" value="2 - Needs improvement"/>
+                     2 - Needs improvement
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="Stars" type="radio" value="3 - Average"/>
+                     3 - Average
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="Stars" type="radio" value="4 - Above average"/>
+                     4 - Above average
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="Stars" type="radio" value="5 - Amazing !"/>
+                     5 - Amazing !
+                    </label>
+                   </div>
+                   <span class="help-block" id="hint_Stars">
+                    Please give a rating that reflects your general view of this station.
+                   </span>
+                  </div>
+                 </div>
+                 <div class="form-group ">
+                  <label class="control-label ">
+                   Optional - purpose rating
+                  </label>
+                  <div class="">
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="optional" type="radio" value="1 - Very poorly"/>
+                     1 - Very poorly
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="optional" type="radio" value="2 - Poorly"/>
+                     2 - Poorly
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="optional" type="radio" value="3 - Well enough"/>
+                     3 - Well enough
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="optional" type="radio" value="4 - Well"/>
+                     4 - Well
+                    </label>
+                   </div>
+                   <div class="radio">
+                    <label class="radio">
+                     <input name="optional" type="radio" value="5 - Extremely well "/>
+                     5 - Extremely well
+                    </label>
+                   </div>
+                   <span class="help-block" id="hint_optional">
+                    If you would like to rate how well the station fulfills its intended purpose based on the description below please do so here.
+                   </span>
+                  </div>
+                 </div>
+                 <div class="form-group ">
+                  <label class="control-label requiredField" for="message">
+                   Required - Comments, Questions, Concerns.
+                   <span class="asteriskField">
+                    *
+                   </span>
+                  </label>
+                  <textarea class="form-control" cols="40" id="message" name="message" placeholder="Please fill out this section so that the dining hall staff can take action of the feedback you have given." rows="10"></textarea>
+                  <span class="help-block" id="hint_message">
+                   If you have any constructive feedback you would like to share with the dining hall staff post it here. Keep in mind that your comments will be read by our staff and that your email is associated with the comment (Identifying information will NOT be shared with the dining hall staff specifically your name ,grade, and email address).
+                  </span>
+                 </div>
+                 <div class="form-group">
+                  <div>
+                   <input name="_honey" style="display:none" type="text"/>
+                   <button class="btn btn-primary btn-lg btn-block" name="submit" type="submit">
+                    Submit
+                   </button>
+                  </div>
+                 </div>
+                </form>
+               </div>
+              </div>
+             </div>
+            </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-primary pull-left" type="button" data-dismiss="modal">Close</button>       
+             <h3 style = "text-align :center"; >Thanks for rating!</h3>
+
+          </div>
+          </div>
+
+          </div>
+
+            <script>
+            // Get the modal
+            var modal = document.getElementById('myModal2');
 
 
-      <area alt="" title="Al's Patio" href="map_app/2.html" shape="poly" coords="402.5, 0.88, 430.24, 1.14, 430.59, 42.61, 406.52, 42.96"/>
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+                
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            </script>
+
+          </div>
+
+
+      <area alt="" title="Salad Bar" data-toggle="modal" data-target="#myModal3" shape="poly" coords="345.45, 198.89, 406.09, 196.52, 405.91, 209.91, 345.8, 213.59" />
 
 
 
-      <area alt="" title="Salad Bar" href="3.html" shape="poly" coords="345.45, 198.89, 406.09, 196.52, 405.91, 209.91, 345.8, 213.59" />
+      <area alt="" title="Soup Bar" data-toggle="modal" data-target="#myModal4" shape="poly" coords="406.09, 196.17, 435.4, 195.82, 436.19, 210.17, 407.14, 209.56" />
 
 
 
-      <area alt="" title="Soup Bar" href="map_app/4.html" shape="poly" coords="406.09, 196.17, 435.4, 195.82, 436.19, 210.17, 407.14, 209.56" />
+      <area alt="" title="Panini Bar" data-toggle="modal" data-target="#myModal5" shape="poly" coords="436.97, 195.39, 485.45, 194.69, 485.1, 209.21, 438.11, 210.35" />
 
 
 
-      <area alt="" title="Panini Bar" href="map_app/5.html" shape="poly" coords="436.97, 195.39, 485.45, 194.69, 485.1, 209.21, 438.11, 210.35" />
+      <area alt="" title="Bagel Bar" data-toggle="modal" data-target="#myModal6"shape="poly" coords="569.45, 291.38, 592.11, 290.06, 590.62, 395.41, 568.31, 396.11" />
 
 
 
-      <area alt="" title="Bagel Bar" href="map_app/6.html" shape="poly" coords="569.45, 291.38, 592.11, 290.06, 590.62, 395.41, 568.31, 396.11" />
+      <area alt="" title="Icecream Bar" data-toggle="modal" data-target="#myModal7" shape="poly" coords="568.84, 397.34, 590.97, 397.95, 592.55, 424.29, 568.31, 424.11" />
 
 
 
-      <area alt="" title="Icecream Bar" href="map_app/7.html" shape="poly" coords="568.84, 397.34, 590.97, 397.95, 592.55, 424.29, 568.31, 424.11" />
+      <area alt="" title="Coffee and Tea" data-toggle="modal" data-target="#myModal8" shape="poly" coords="138.69, 355.07, 149.89, 355.6, 149.89, 432.07, 138.69, 434.0" />
 
 
 
-      <area alt="" title="Coffe and Tea" href="map_app/8.html" shape="poly" coords="138.69, 355.07, 149.89, 355.6, 149.89, 432.07, 138.69, 434.0" />
+      <area alt="" title="Dessert Bar" data-toggle="modal" data-target="#myModal9"shape="poly" coords="153.82, 355.86, 164.06, 355.07, 164.06, 377.56, 154.17, 377.04" />
 
 
 
-      <area alt="" title="Dessert Bar" href="map_app/9.html" shape="poly" coords="153.82, 355.86, 164.06, 355.07, 164.06, 377.56, 154.17, 377.04" />
+      <area alt="" title="Fruit Stand" data-toggle="modal" data-target="#myModal10" shape="poly" coords="153.39, 378.96, 164.67, 379.49, 165.29, 404.16, 153.82, 403.99" />
 
 
 
-      <area alt="" title="Fruit Stand" href="map_app/10.html" shape="poly" coords="153.39, 378.96, 164.67, 379.49, 165.29, 404.16, 153.82, 403.99" />
+      <area alt="" title="Milk and Juice" data-toggle="modal" data-target="#myModal11" shape="poly" coords="152.69, 406.09, 164.32, 405.47, 167.74, 431.55, 154.17, 429.8" />
 
 
 
-      <area alt="" title="Drink Machine" href="map_app/11.html" shape="poly" coords="152.69, 406.09, 164.32, 405.47, 167.74, 431.55, 154.17, 429.8" />
+      <area alt="" title="Drink Counter" data-toggle="modal" data-target="#myModal12" shape="poly" coords="141.05, 255.5, 140.26, 197.31, 197.84, 197.92, 197.84, 211.84, 159.86, 213.06, 156.89, 255.32" />
 
 
 
-      <area alt="" title="Drink Counter" href="map_app/12.html" shape="poly" coords="141.05, 255.5, 140.26, 197.31, 197.84, 197.92, 197.84, 211.84, 159.86, 213.06, 156.89, 255.32" />
-
-
-
-      <area alt="" title="Utensils and Sauce" href="map_app/13.html" shape="poly" coords="253.92, 186.9, 293.82, 186.72, 296.36, 208.86, 255.41, 208.25" />
+      <area alt="" title="Utensils and Sauce" data-toggle="modal" data-target="#myModal13" shape="poly" coords="253.92, 186.9, 293.82, 186.72, 296.36, 208.86, 255.41, 208.25" />
 
 
   </map>
